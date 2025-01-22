@@ -1,0 +1,3 @@
+Invalid Cheque Date format for row no. 2. allowed YYYY-MM-DD
+Invalid Advance for row no. 2
+------------------------------------------------------------ 
