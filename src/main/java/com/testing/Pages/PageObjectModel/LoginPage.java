@@ -29,4 +29,34 @@ public class LoginPage extends CommonToAllPages {
         return getText(HomePage);
     }
 
+    public String loginWithinvalidUser(){
+        openUrl();
+        clickElement(SocietyLoginButton);
+        sendKeys(EmailField, PropertyReader.readKey("invalidEmail"));
+        sendKeys(PassWordField,PropertyReader.readKey("validPass"));
+        clickElement(LoginButton);
+        visiblityOfeElement(ErrorMessage);
+        return getText(ErrorMessage);
+    }
+
+    public String loginWithinvalidPass(){
+        openUrl();
+        clickElement(SocietyLoginButton);
+        sendKeys(EmailField, PropertyReader.readKey("validEmail"));
+        sendKeys(PassWordField, PropertyReader.readKey("invalidPass"));
+        clickElement(LoginButton);
+        visiblityOfeElement(ErrorMessage);
+        return getText(ErrorMessage);
+    }
+
+    public String loginWithInvalidCredentials(){
+        openUrl();
+        clickElement(SocietyLoginButton);
+        sendKeys(EmailField, PropertyReader.readKey("invalidEmail"));
+        sendKeys(PassWordField, PropertyReader.readKey("invalidPass"));
+        clickElement(LoginButton);
+        visiblityOfeElement(ErrorMessage);
+        return getText(ErrorMessage);
+    }
+
 }
