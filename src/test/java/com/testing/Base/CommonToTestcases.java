@@ -5,6 +5,8 @@ import com.testing.Utils.PropertyReader;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
+import org.apache.log4j.*;
+
 public class CommonToTestcases {
     @BeforeTest
     public void setup(){
@@ -15,4 +17,6 @@ public class CommonToTestcases {
     public void teardown(){
         DriverManager.quitDriver();
     }
+
+    public Logger logger=Logger.getLogger(getClass().getSimpleName());
 }
