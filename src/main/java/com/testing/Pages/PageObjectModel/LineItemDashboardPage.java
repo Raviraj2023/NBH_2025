@@ -18,7 +18,6 @@ public class LineItemDashboardPage extends CommonToAllPages {
 
 
    public String verifyLineItemDashboardPage(){
-       System.out.println("test");
 
        clickElement(Financial_Management);
        clickElement(Billing);
