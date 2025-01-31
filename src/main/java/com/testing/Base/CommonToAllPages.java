@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 import static com.testing.Driver.DriverManager.getDriver;
 
@@ -33,5 +34,10 @@ public class CommonToAllPages {
     public WebElement visiblityOfeElement(By location){
         return new WebDriverWait(getDriver(), Duration.ofSeconds(7)).
                 until(ExpectedConditions.visibilityOfElementLocated(location));
+    }
+
+    public List<WebElement> listofElement(By list){
+        return new WebDriverWait(getDriver(), Duration.ofSeconds(8))
+                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(list));
     }
 }
