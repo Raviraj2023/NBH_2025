@@ -4,6 +4,7 @@ import com.testing.Base.CommonToTestcases;
 import com.testing.Pages.PageObjectModel.LineitemDashboard;
 import com.testing.Pages.PageObjectModel.LoginPage;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class R_LineItemDashboardTesting extends CommonToTestcases {
@@ -22,6 +23,9 @@ public class R_LineItemDashboardTesting extends CommonToTestcases {
 @Test
     public void AddLineItem(){
      lg.loginWithValidCredentials();
-     line.createLineitem();
+
+     String msg=line.createLineitem();
+    Assert.assertEquals(msg,"Line-item created successfully");
+
 }
 }

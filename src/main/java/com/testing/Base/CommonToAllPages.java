@@ -19,24 +19,28 @@ public class CommonToAllPages {
 
     public Logger logger = Logger.getLogger(getClass().getSimpleName());
 
-    public void openUrl(){
+    public void openUrl() {
         getDriver().get(PropertyReader.readKey("url"));
     }
-    public void clickElement(By by){
+
+    public void clickElement(By by) {
         getDriver().findElement(by).click();
     }
-    public void sendKeys(By by, String value){
+
+    public void sendKeys(By by, String value) {
         getDriver().findElement(by).sendKeys(value);
     }
-    public String getText(By by){
+
+    public String getText(By by) {
         return getDriver().findElement(by).getText();
     }
-    public WebElement visiblityOfeElement(By location){
+
+    public WebElement visiblityOfeElement(By location) {
         return new WebDriverWait(getDriver(), Duration.ofSeconds(7)).
                 until(ExpectedConditions.visibilityOfElementLocated(location));
     }
 
-    public List<WebElement> listofElement(By list){
+    public List<WebElement> listofElement(By list) {
         return new WebDriverWait(getDriver(), Duration.ofSeconds(8))
                 .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(list));
     }

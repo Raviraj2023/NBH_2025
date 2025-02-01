@@ -25,25 +25,32 @@ public class LineitemDashboard extends CommonToAllPages {
     private By Line_item_dashboard_text = By.xpath("//div [@class='nb__c7kE9 nb__1feGz']");
     private By Addlineitem = By.xpath("//div[@class='nb__3v4m3']");
     private By Display_Name = By.xpath("//*[@name='request']");
-    private By Owner_rate=By.xpath(" (//*[@class='form-control'])[2]");
-    private By TaxGroup=By.xpath("(//*[@class='css-1hwfws3 nb-select__value-container nb-select__value-container--has-value'])[3]");
-private By listTaxgroup=By.xpath("//div[contains(@id, 'react-select-5-option')]");
-private By submitLineitem=By.xpath("//*[@class='nb__uZlDe']");
+    private By Owner_rate = By.xpath(" (//*[@class='form-control'])[2]");
+    private By TaxGroup = By.xpath("//div[contains(@class,'css-dvua67')and text()='N/A']");
 
-    public void selectTaxGroup(String Tax){
-        List<WebElement> listofElements=listofElement(listTaxgroup);
-        for(WebElement element:listofElements){
-            if(element.getText().contains(Tax));
+    //    private By TaxGroup=By.xpath("(//*[@class='css-1hwfws3 nb-select__value-container nb-select__value-container--has-value'])[3]");
+    private By listTaxgroup = By.xpath("//*[@class='css-11unzgr nb-select__menu-list']");
+    private By submitLineitem = By.xpath("//*[@class='nb__uZlDe'and text()='Add Line Item']");
+    private By sucess_popup = By.xpath("//div[@id='alertMessageBox']");
+
+    public void selectTaxGroup(String Tax) {
+        List<WebElement> listofElements = listofElement(listTaxgroup);
+        try{
+        for (WebElement element : listofElements) {
+
+            if (element.getText().contains(Tax)) ;
             element.click();
+        }} catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
-    public String Additemname(){
-        String SD="NBH";
-        Date currentDate=new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("MMddyy");
+    public String Additemname() {
+        String SD = "NBH_";
+        Date currentDate = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String formattedDate = sdf.format(currentDate);
-        return SD+formattedDate;
+        return SD + formattedDate;
     }
 
     public String checkDisplayLineItemDash() {
@@ -55,16 +62,18 @@ private By submitLineitem=By.xpath("//*[@class='nb__uZlDe']");
         return LineItDashTitle = getText(Line_item_dashboard_text);
     }
 
-    public void createLineitem(){
+    public String createLineitem() {
         clickElement(Financial_Management);
         clickElement(Billing);
         clickElement(Line_item_dashboard);
         visiblityOfeElement(Line_item_dashboard_text);
         clickElement(Addlineitem);
-        sendKeys(Display_Name,Additemname());
-        sendKeys(Owner_rate,"2000");
+        sendKeys(Display_Name, Additemname());
+        sendKeys(Owner_rate, "2000");
         clickElement(TaxGroup);
-//        selectTaxGroup("GST 18%");
+        selectTaxGroup("GST 5%");
         clickElement(submitLineitem);
+        visiblityOfeElement(sucess_popup);
+        return getText(sucess_popup);
     }
 }
