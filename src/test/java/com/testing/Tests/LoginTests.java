@@ -3,7 +3,6 @@ package com.testing.Tests;
 import com.testing.Base.CommonToTestcases;
 import com.testing.Pages.PageObjectModel.LoginPage;
 import com.testing.Utils.PropertyReader;
-import io.qameta.allure.internal.shadowed.jackson.databind.annotation.JsonAppend;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;

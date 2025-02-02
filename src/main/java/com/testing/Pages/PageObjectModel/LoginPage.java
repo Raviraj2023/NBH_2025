@@ -5,7 +5,6 @@ import com.testing.Utils.PropertyReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import org.apache.log4j.*;
 
 public class LoginPage extends CommonToAllPages {
     WebDriver driver;

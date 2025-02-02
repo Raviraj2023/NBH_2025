@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import static com.testing.Driver.DriverManager.driver;
 
 public class LineItemDashboardTests extends CommonToTestcases {
-    LineItemDashboardPage line = new LineItemDashboardPage(driver);
+    LineItemDashboardPage line = new LineItemDashboardPage();
 
  @Test
 
@@ -22,7 +22,7 @@ public class LineItemDashboardTests extends CommonToTestcases {
     public void verify_Add_Line_Item() {
         lg.loginWithValidCredentials();
 
-        String msg = line.createLineItem();
+        String msg = line.verifyCreateLineItem(2000,"GST 18%");
         Assert.assertEquals(msg, "Line-item created successfully");
 
     }

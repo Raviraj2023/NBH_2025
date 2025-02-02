@@ -1,7 +1,9 @@
 package com.testing.Base;
 
 import com.testing.Utils.PropertyReader;
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,7 +19,7 @@ public class CommonToAllPages {
     public CommonToAllPages() {
     }
 
-    public Logger logger = Logger.getLogger(getClass().getSimpleName());
+    public Logger logger = LogManager.getLogger(getClass().getSimpleName());
 
     public void openUrl() {
         getDriver().get(PropertyReader.readKey("url"));
