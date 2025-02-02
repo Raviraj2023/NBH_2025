@@ -12,7 +12,7 @@ public class LoginTests extends CommonToTestcases {
     WebDriver driver;
     LoginPage lg = new LoginPage(driver);
     @Test (enabled = true, priority = 3)
-    public void verify_loginWithValidCreds(){
+    public void verify_Login_With_Valid_Creds(){
         try {
             String msg = lg.loginWithValidCredentials();
             Assert.assertEquals(msg, "Home");
@@ -24,17 +24,17 @@ public class LoginTests extends CommonToTestcases {
         }
     }
     @Test(enabled = false, priority = 1)
-    public void verify_loginwithInvaliduser(){
+    public void verify_Login_With_Invalid_User(){
         String msg=lg.loginWithinvalidUser();
         Assert.assertEquals(msg, PropertyReader.readKey("invaliduserError"));
     }
     @Test(enabled = false, priority = 0)
-    public void verify_loginWithInvalidPass(){
+    public void verify_Login_With_Invalid_Pass(){
         String msg=lg.loginWithinvalidPass();
         Assert.assertEquals(msg, PropertyReader.readKey("invalidpassError"));
     }
     @Test(enabled = false, priority = 3)
-    public void verify_loginWithInvalidCreds(){
+    public void verify_Login_With_Invalid_Creds(){
         String msg=lg.loginWithInvalidCredentials();
         Assert.assertEquals(msg, PropertyReader.readKey("invaliduserError"));
     }

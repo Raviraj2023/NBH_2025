@@ -1,10 +1,29 @@
 package com.testing.Tests;
 
 import com.testing.Base.CommonToTestcases;
-import com.testing.Pages.PageObjectModel.LoginPage;
-import org.openqa.selenium.WebDriver;
+import com.testing.Pages.PageObjectModel.LineItemDashboardPage;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import static com.testing.Driver.DriverManager.driver;
 
 public class LineItemDashboardTests extends CommonToTestcases {
-    WebDriver driver;
+    LineItemDashboardPage line = new LineItemDashboardPage(driver);
 
+ @Test
+
+ public void verify_Line_Item_Dashboard(){
+     lg.loginWithValidCredentials();
+    String title= line.verifyLineItemDashboardPage();
+    Assert.assertEquals(title,"Line Item Dashboard");
+ }
+
+@Test
+    public void verify_Add_Line_Item() {
+        lg.loginWithValidCredentials();
+
+        String msg = line.createLineItem();
+        Assert.assertEquals(msg, "Line-item created successfully");
+
+    }
 }
