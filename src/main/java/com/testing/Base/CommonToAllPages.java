@@ -15,8 +15,8 @@ import java.util.List;
 import static com.testing.Driver.DriverManager.getDriver;
 
 public class CommonToAllPages {
-
     public CommonToAllPages() {
+
     }
 
     public Logger logger = LogManager.getLogger(getClass().getSimpleName());
@@ -45,5 +45,16 @@ public class CommonToAllPages {
     public List<WebElement> listofElement(By list) {
         return new WebDriverWait(getDriver(), Duration.ofSeconds(8))
                 .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(list));
+    }
+    public WebElement waitUntilElementIsClickable(By elementLocation) {
+        return new WebDriverWait(getDriver(), Duration.ofSeconds(8)).until(ExpectedConditions.elementToBeClickable(elementLocation));
+    }
+    public Boolean waitForInvisibility(By elementLocation) {
+        try {
+            return new WebDriverWait(getDriver(), Duration.ofSeconds(8)).until(ExpectedConditions.invisibilityOfElementLocated(elementLocation));
+        } catch (Exception e) {
+            logger.warn("Element did not become invisible: " + elementLocation, e);
+        }
+        return null;
     }
 }

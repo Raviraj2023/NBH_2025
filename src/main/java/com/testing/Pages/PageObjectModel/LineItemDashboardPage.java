@@ -22,7 +22,11 @@ public class LineItemDashboardPage extends CommonToAllPages {
     private By submitLineitem = By.xpath("//*[@class='nb__uZlDe' and text()='Add Line Item']");
     private By sucess_popup = By.xpath("//div[@id='alertMessageBox']");
     private By Home = By.xpath("//div[@class='nb__mLFkD']");
-
+    private By lineItemSearchField = By.xpath("//input[@placeholder='Search by Line Item Name / Ledger Code ']");
+    private By success_popup = By.xpath("//div[@id='alertMessageBox']");
+    private By LogoutDropdown = By.xpath("//div[@class='nb__19WIg']");
+    private By Logout = By.xpath("//div[@class='nb__mOf0C' and text()='Logout']");
+    String itemName;
     private void navigateToLineItemDashboard() {
         visiblityOfeElement(Home);
         logger.info("Navigating to Financial Management");
@@ -73,7 +77,7 @@ public class LineItemDashboardPage extends CommonToAllPages {
         visiblityOfeElement(Line_item_dashboard_title);
         clickElement(Addlineitem);
 
-        String itemName = generateItemName();
+         itemName = generateItemName();
         logger.info("Generated item name: " + itemName);
         sendKeys(Display_Name, itemName);
 
@@ -89,7 +93,17 @@ public class LineItemDashboardPage extends CommonToAllPages {
         visiblityOfeElement(sucess_popup);
         String successMessage = getText(sucess_popup);
         logger.info("Success message displayed: " + successMessage);
-
+        visiblityOfeElement(success_popup);
+        waitForInvisibility(success_popup);
+        clickElement(LogoutDropdown);
+        visiblityOfeElement(Logout);
+        waitUntilElementIsClickable(Logout);
+        clickElement(Logout);
         return successMessage;
+    }
+    public void verifyLineItemSearch() {
+        navigateToLineItemDashboard();
+        waitUntilElementIsClickable(lineItemSearchField);
+        sendKeys(lineItemSearchField, itemName);
     }
 }
