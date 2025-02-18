@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 import static com.testing.Driver.DriverManager.driver;
 
 public class CommonToTestcases {
-    protected static LoginPage lg = new LoginPage(driver);
+    protected static LoginPage lg = new LoginPage();
 
     @BeforeTest
     public void setup() {

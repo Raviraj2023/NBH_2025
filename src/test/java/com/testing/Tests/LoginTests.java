@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 public class LoginTests extends CommonToTestcases {
     WebDriver driver;
-    LoginPage lg = new LoginPage(driver);
+    LoginPage lg = new LoginPage();
     @Test (enabled = true, priority = 3)
     public void verify_Login_With_Valid_Creds(){
         try {
