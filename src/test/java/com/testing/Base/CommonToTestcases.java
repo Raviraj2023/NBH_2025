@@ -3,16 +3,17 @@ package com.testing.Base;
 import com.testing.Driver.DriverManager;
 import com.testing.Pages.PageObjectModel.LoginPage;
 import com.testing.Utils.PropertyReader;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
-import static com.testing.Driver.DriverManager.driver;
 
 public class CommonToTestcases {
-    protected static LoginPage lg = new LoginPage();
+    protected  LoginPage lg = new LoginPage(DriverManager.getDriver());
+WebDriver driver;
 
     @BeforeTest
     public void setup() {

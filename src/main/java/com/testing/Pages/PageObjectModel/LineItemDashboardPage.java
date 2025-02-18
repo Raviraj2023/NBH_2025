@@ -2,6 +2,7 @@ package com.testing.Pages.PageObjectModel;
 
 import com.testing.Base.CommonToAllPages;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.text.SimpleDateFormat;
@@ -9,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 public class LineItemDashboardPage extends CommonToAllPages {
-
+    WebDriver driver;
     private By Financial_Management = By.xpath("//div[contains(@class,'nb__DAYS7')]/div[text()='Financial Management']");
     private By Billing = By.xpath("//div[contains(@class,'nb__DAYS7') and text()='Billing']");
     private By Line_item_dashboard = By.xpath("//div[contains(@class,'nb__DAYS7') and text()='Line item dashboard']");
@@ -27,6 +28,12 @@ public class LineItemDashboardPage extends CommonToAllPages {
     private By LogoutDropdown = By.xpath("//div[@class='nb__19WIg']");
     private By Logout = By.xpath("//div[@class='nb__mOf0C' and text()='Logout']");
     String itemName;
+
+    public LineItemDashboardPage(WebDriver driver) {
+        super(driver);
+        this.driver = driver;
+    }
+
     private void navigateToLineItemDashboard() {
         visiblityOfeElement(Home);
         logger.info("Navigating to Financial Management");
@@ -77,7 +84,7 @@ public class LineItemDashboardPage extends CommonToAllPages {
         visiblityOfeElement(Line_item_dashboard_title);
         clickElement(Addlineitem);
 
-         itemName = generateItemName();
+        itemName = generateItemName();
         logger.info("Generated item name: " + itemName);
         sendKeys(Display_Name, itemName);
 
@@ -101,6 +108,7 @@ public class LineItemDashboardPage extends CommonToAllPages {
         clickElement(Logout);
         return successMessage;
     }
+
     public void verifyLineItemSearch() {
         navigateToLineItemDashboard();
         waitUntilElementIsClickable(lineItemSearchField);

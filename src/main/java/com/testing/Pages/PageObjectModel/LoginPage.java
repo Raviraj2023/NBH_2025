@@ -7,10 +7,11 @@ import org.openqa.selenium.WebDriver;
 
 
 public class LoginPage extends CommonToAllPages {
+    WebDriver driver;
 
-
-    public LoginPage() {
-
+    public LoginPage(WebDriver driver) {
+        super(driver);
+        this.driver = driver;
     }
 
     private By SocietyLoginButton = By.xpath("//div[@class='nb__GGkUH']");

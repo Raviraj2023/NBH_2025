@@ -8,8 +8,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import static com.testing.Driver.DriverManager.driver;
-import static com.testing.Driver.DriverManager.getDriver;
 
 public class GenerateBillsPage extends CommonToAllPages {
     private WebDriver driver;
@@ -27,8 +25,10 @@ public class GenerateBillsPage extends CommonToAllPages {
     private final By CreateSeries = By.xpath("//div[text()='Test// (###) ']");
     private final By LineItemDrpDwn = By.xpath("//div[contains(@class,'nb-select__placeholder') and text()='Select lineItem']");
 
-    public GenerateBillsPage() {
+    public GenerateBillsPage(WebDriver driver) {
 
+        super(driver);
+        this.driver=driver;
     }
 
     private void navigateToGenerateBillsPage() {
@@ -92,7 +92,7 @@ public class GenerateBillsPage extends CommonToAllPages {
 
     private void scrollToBottomUsingActions() {
         try {
-            new Actions(getDriver()).sendKeys(Keys.CONTROL, Keys.END).perform();
+            new Actions(driver).sendKeys(Keys.CONTROL, Keys.END).perform();
             logger.info("Scrolled to the bottom using Actions class.");
         } catch (Exception e) {
             logger.error("Error while scrolling with Actions", e);
@@ -102,11 +102,11 @@ public class GenerateBillsPage extends CommonToAllPages {
     private void clickWhenClickable(By locator) {
         try {
             waitUntilElementIsClickable(locator);
-            getDriver().findElement(locator).click();
+            driver.findElement(locator).click();
             logger.info("Clicked on element: " + locator);
         } catch (ElementClickInterceptedException e) {
             logger.warn("Click intercepted. Using JavaScript click as fallback.");
-            ((JavascriptExecutor) getDriver()).executeScript("arguments[0].click();", getDriver().findElement(locator));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(locator));
         } catch (TimeoutException e) {
             logger.error("Timeout waiting for element to be clickable: " + locator, e);
         }
